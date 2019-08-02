@@ -67,16 +67,16 @@ SmallClock >> mouseOffset [
 { #category : #accessing }
 SmallClock >> position: aPoint [
 	self center position: aPoint.
-	"surround position: aPoint.
-	date position: aPoint."
+	surround position: aPoint.
+	"date position: aPoint."
 	^self.
 ]
 
 { #category : #accessing }
 SmallClock >> start [
 	self center comeToFront openInWorld.
-	"surround := ClockSurround new start.
-	date := ClockDate new start."
+	surround := ClockSurround new start.
+	"date := ClockDate new start."
 	process := [ [ true ]
 		whileTrue: [ self position: Smalltalk currentWorld activeHand position + self mouseOffset.
 			(1 / 60) seconds asDelay wait ] ] forkAt: Processor lowestPriority.
@@ -86,8 +86,8 @@ SmallClock >> start [
 { #category : #accessing }
 SmallClock >> stop [
 	center delete.
-	"surround stop.
-	date stop."
+	surround stop.
+	"date stop."
 	process terminate.
 	^ self
 ]
