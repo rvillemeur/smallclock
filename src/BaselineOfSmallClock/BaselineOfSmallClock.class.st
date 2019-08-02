@@ -10,8 +10,7 @@ BaselineOfSmallClock >> baseline: spec [
 	spec
 		for: #common
 		do: [ spec
-				package: 'SmallClock';
-				package: 'SmallClock-Tests' with: [ spec requires: 'SmallClock' ]  ]
+				package: 'SmallClock' ]
 
 
 ]
