@@ -1,6 +1,6 @@
 Class {
 	#name : #BaselineOfSmallClock,
-	#superclass : #Object,
+	#superclass : #BaselineOf,
 	#category : #BaselineOfSmallClock
 }
 
