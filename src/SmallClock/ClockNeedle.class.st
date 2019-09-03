@@ -7,11 +7,6 @@ Class {
 	#category : #SmallClock
 }
 
-{ #category : #accessing }
-ClockNeedle >> arcRadians: arg1 [ 
-	^ self subclassResponsibility
-]
-
 { #category : #initialization }
 ClockNeedle >> initialize [
 	self elements: self label.
@@ -19,14 +14,9 @@ ClockNeedle >> initialize [
 ]
 
 { #category : #accessing }
-ClockNeedle >> label [
-	^ self subclassResponsibility
-]
-
-{ #category : #accessing }
 ClockNeedle >> position: aPoint [
 	time := DateAndTime now.
-	self updateElementsPositions: aPoint
+	self elementsPositions: aPoint
 ]
 
 { #category : #accessing }
@@ -36,10 +26,10 @@ ClockNeedle >> radius [
 ]
 
 { #category : #accessing }
-ClockNeedle >> updateElementPosition: aStringMorph atIndex: elementIndex to: aPoint [
+ClockNeedle >> updatePositionOf: anElement atIndex: elementIndex to: aPoint [
 	|xPosition yPosition radian|
 	radian := self arcRadians: elementIndex.
 	xPosition := (self xCartesianCoordinateFrom: self radius and: radian) * (elementIndex - 1).
 	yPosition := (self yCartesianCoordinateFrom: self radius and: radian) * (elementIndex - 1).
-	aStringMorph position: xPosition @ yPosition + aPoint.
+	anElement position: xPosition @ yPosition + aPoint.
 ]

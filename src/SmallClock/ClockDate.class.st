@@ -54,7 +54,7 @@ ClockDate >> monthNameAt: aDate [
 { #category : #accessing }
 ClockDate >> position: aPoint [
 	rotation := rotation - self speed.
-	self updateElementsPositions: aPoint
+	self elementsPositions: aPoint
 ]
 
 { #category : #accessing }

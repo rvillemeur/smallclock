@@ -29,7 +29,7 @@ ClockSurround >> label [
 
 { #category : #accessing }
 ClockSurround >> position: aPoint [
-	self updateElementsPositions: aPoint
+	self elementsPositions: aPoint
 ]
 
 { #category : #accessing }

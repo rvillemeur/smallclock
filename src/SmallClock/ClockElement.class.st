@@ -8,6 +8,11 @@ Class {
 }
 
 { #category : #accessing }
+ClockElement >> arcRadians: index [ 
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
 ClockElement >> circleSplit [
 	^ Float twoPi / (self label size) 
 ]
@@ -26,6 +31,18 @@ ClockElement >> elements: aCollection [
 		into: elementDetail.
 	elements := elementDetail.
 	^ self
+]
+
+{ #category : #accessing }
+ClockElement >> elementsPositions: aPoint [
+	elements
+		withIndexDo:
+			[ :element :index | self updatePositionOf: element atIndex: index to: aPoint ]
+]
+
+{ #category : #accessing }
+ClockElement >> label [
+	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
@@ -61,19 +78,12 @@ ClockElement >> stop [
 ]
 
 { #category : #accessing }
-ClockElement >> updateElementPosition: aStringMorph atIndex: elementIndex to: aPoint [
+ClockElement >> updatePositionOf: anElement atIndex: elementIndex to: aPoint [
 	| xPosition yPosition radian |
 	radian := self arcRadians: elementIndex.
 	xPosition := self xCartesianCoordinateFrom: self radius and: radian .
 	yPosition := self yCartesianCoordinateFrom: self radius and: radian.
-	aStringMorph position: xPosition @ yPosition + aPoint
-]
-
-{ #category : #accessing }
-ClockElement >> updateElementsPositions: aPoint [
-	elements
-		withIndexDo:
-			[ :element :index | self updateElementPosition: element atIndex: index to: aPoint ]
+	anElement position: xPosition @ yPosition + aPoint
 ]
 
 { #category : #accessing }
