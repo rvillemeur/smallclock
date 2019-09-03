@@ -7,7 +7,8 @@ Class {
 		'date',
 		'process',
 		'second',
-		'minute'
+		'minute',
+		'hour'
 	],
 	#classVars : [
 		'instance'
@@ -58,7 +59,7 @@ SmallClock class >> worldMenu: aBuilder [
 
 { #category : #accessing }
 SmallClock >> center [ 
-^ center ifNil: [center := (#+ asStringMorph backgroundColor: Color red)]
+^ center ifNil: [center := (#* asStringMorph)]
 ]
 
 { #category : #accessing }
@@ -68,20 +69,23 @@ SmallClock >> mouseOffset [
 
 { #category : #accessing }
 SmallClock >> position: aPoint [
-	self center position: 100@100.
-	surround position: 100@100.
-	date position: 100@100.
-	second position: 100@100.
+	self center position: aPoint.
+	surround position: aPoint.
+	date position: aPoint.
+	second position: aPoint.
+	minute position: aPoint.
+	hour position: aPoint.
 	^self.
 ]
 
 { #category : #accessing }
 SmallClock >> start [
 	self center comeToFront openInWorld.
-	surround := ClockSurround new start.
-	date := ClockDate new start.
-	second := ClockNeedleSecond new start.
-	minute := ClockNeedleMinute new start.
+	surround := ClockSurround start.
+	date := ClockDate start.
+	second := ClockNeedleSecond start.
+	minute := ClockNeedleMinute start.
+	hour := ClockNeedleHour start.
 	process := [ [ true ]
 		whileTrue: [ self position: Smalltalk currentWorld activeHand position + self mouseOffset.
 			(1 / 60) seconds asDelay wait ] ] forkAt: Processor lowestPriority.
@@ -95,6 +99,7 @@ SmallClock >> stop [
 	date stop.
 	second stop.
 	minute stop.
+	hour stop.
 	process terminate.
 	^ self
 ]

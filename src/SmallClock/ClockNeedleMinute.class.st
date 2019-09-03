@@ -45,7 +45,7 @@ ClockNeedleMinute >> initialize [
 
 { #category : #accessing }
 ClockNeedleMinute >> label [
-	^ '.....' asOrderedCollection 
+	^ '....' asOrderedCollection 
 
 ]
 
@@ -59,7 +59,7 @@ ClockNeedleMinute >> position: aPoint [
 
 { #category : #accessing }
 ClockNeedleMinute >> radius [ 
-	^ 6
+	^ 10
 
 ]
 
@@ -77,8 +77,8 @@ ClockNeedleMinute >> stop [
 ClockNeedleMinute >> updateElementPosition: aStringMorph atIndex: elementIndex to: aPoint [
 	|xPosition yPosition radian|
 	radian := self arcRadians: elementIndex.
-	xPosition := (self xCartesianCoordinateFrom: self radius and: radian) * elementIndex.
-	yPosition := (self yCartesianCoordinateFrom: self radius and: radian) * elementIndex.
+	xPosition := (self xCartesianCoordinateFrom: self radius and: radian) * (elementIndex - 1).
+	yPosition := (self yCartesianCoordinateFrom: self radius and: radian) * (elementIndex - 1).
 	aStringMorph position: xPosition @ yPosition + aPoint.
 ]
 
