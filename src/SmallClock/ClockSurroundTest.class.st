@@ -72,14 +72,14 @@ ClockSurroundTest >> testNewPositions [
 	|surround|
 	surround := ClockSurround new.
 	surround position: 100@100.
-	self assert: (surround elements at:3) position equals: 145@100.
+	self assert: (surround elements at:3) position equals: 148@100.
 	self assert: (surround elements at:3) contents equals: '3'.
-	self assert: (surround elements at:6) position equals: 100@145.
+	self assert: (surround elements at:6) position equals: 100@148.
 	self assert: (surround elements at:6) contents equals: '6'.
-	self assert: (surround elements at:9) position equals: 55@100.
+	self assert: (surround elements at:9) position equals: 52@100.
 	self assert: (surround elements at:9) contents equals: '9'.
 	self assert: (surround elements at:12) position x closeTo: 100.
-	self assert: (surround elements at:12) position y closeTo: 55.
+	self assert: (surround elements at:12) position y closeTo: 52.
 	self assert: (surround elements at:12) contents equals: '12'.
 ]
 
@@ -99,11 +99,11 @@ ClockSurroundTest >> testUpdatePoint [
 	surround := ClockSurround new.
 	point := #+ asStringMorph position: 0@0.
 	surround updateElementPosition:  point atIndex: 3 to: 100@100.
-	self assert: point position equals: 145@100.
+	self assert: point position equals: 148@100.
 	surround updateElementPosition:  point atIndex: 6 to: 100@100.
-	self assert: point position equals: 100@145.
+	self assert: point position equals: 100@148.
 	surround updateElementPosition:  point atIndex: 9 to: 100@100.
-	self assert: point position equals: 55@100.
+	self assert: point position equals: 52@100.
 	surround updateElementPosition:  point atIndex: 12 to: 100@100.
 	self assert: point position x closeTo: 100.
 ]
