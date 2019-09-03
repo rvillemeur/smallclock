@@ -6,7 +6,8 @@ Class {
 		'surround',
 		'date',
 		'process',
-		'second'
+		'second',
+		'minute'
 	],
 	#classVars : [
 		'instance'
@@ -80,6 +81,7 @@ SmallClock >> start [
 	surround := ClockSurround new start.
 	date := ClockDate new start.
 	second := ClockNeedleSecond new start.
+	minute := ClockNeedleMinute new start.
 	process := [ [ true ]
 		whileTrue: [ self position: Smalltalk currentWorld activeHand position + self mouseOffset.
 			(1 / 60) seconds asDelay wait ] ] forkAt: Processor lowestPriority.
@@ -92,6 +94,7 @@ SmallClock >> stop [
 	surround stop.
 	date stop.
 	second stop.
+	minute stop.
 	process terminate.
 	^ self
 ]

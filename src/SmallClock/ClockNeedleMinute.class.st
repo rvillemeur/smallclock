@@ -1,5 +1,5 @@
 Class {
-	#name : #ClockNeedleSecond,
+	#name : #ClockNeedleMinute,
 	#superclass : #Object,
 	#instVars : [
 		'elements',
@@ -9,25 +9,25 @@ Class {
 }
 
 { #category : #accessing }
-ClockNeedleSecond class >> start [
+ClockNeedleMinute class >> start [
 	^self new start
 
 ]
 
 { #category : #accessing }
-ClockNeedleSecond >> arcRadians: index [
+ClockNeedleMinute >> arcRadians: index [
 	"Clock surround start from the top, and not from the 0 of the circle, so remove Float halfPi"
 
-	^ Float pi * time second / 30 - Float halfPi
+	^ Float pi * time minute / 30 - Float halfPi
 ]
 
 { #category : #accessing }
-ClockNeedleSecond >> elements [
+ClockNeedleMinute >> elements [
 	^ elements
 ]
 
 { #category : #accessing }
-ClockNeedleSecond >> elements: aCollection [
+ClockNeedleMinute >> elements: aCollection [
 	| elementDetail |
 	elementDetail := Array new: aCollection size.
 	aCollection
@@ -38,19 +38,19 @@ ClockNeedleSecond >> elements: aCollection [
 ]
 
 { #category : #initialization }
-ClockNeedleSecond >> initialize [
+ClockNeedleMinute >> initialize [
 	self elements: self label.
 	^ self
 ]
 
 { #category : #accessing }
-ClockNeedleSecond >> label [
+ClockNeedleMinute >> label [
 	^ '.....' asOrderedCollection 
 
 ]
 
 { #category : #accessing }
-ClockNeedleSecond >> position: aPoint [
+ClockNeedleMinute >> position: aPoint [
 	time := DateAndTime now.
 	elements
 		withIndexDo:
@@ -58,23 +58,23 @@ ClockNeedleSecond >> position: aPoint [
 ]
 
 { #category : #accessing }
-ClockNeedleSecond >> radius [ 
-	^ 8
+ClockNeedleMinute >> radius [ 
+	^ 6
 
 ]
 
 { #category : #accessing }
-ClockNeedleSecond >> start [
+ClockNeedleMinute >> start [
 	self elements do: [ :element | element comeToFront openInWorld ].
 ]
 
 { #category : #accessing }
-ClockNeedleSecond >> stop [
+ClockNeedleMinute >> stop [
 	elements do: [ :element | element delete ]
 ]
 
 { #category : #'as yet unclassified' }
-ClockNeedleSecond >> updateElementPosition: aStringMorph atIndex: elementIndex to: aPoint [
+ClockNeedleMinute >> updateElementPosition: aStringMorph atIndex: elementIndex to: aPoint [
 	|xPosition yPosition radian|
 	radian := self arcRadians: elementIndex.
 	xPosition := (self xCartesianCoordinateFrom: self radius and: radian) * elementIndex.
@@ -83,11 +83,11 @@ ClockNeedleSecond >> updateElementPosition: aStringMorph atIndex: elementIndex t
 ]
 
 { #category : #accessing }
-ClockNeedleSecond >> xCartesianCoordinateFrom: aRadius and:  aRadians [
+ClockNeedleMinute >> xCartesianCoordinateFrom: aRadius and:  aRadians [
 	^ aRadius * (aRadians cos).
 ]
 
 { #category : #accessing }
-ClockNeedleSecond >> yCartesianCoordinateFrom: aRadius and: aRadians [
+ClockNeedleMinute >> yCartesianCoordinateFrom: aRadius and: aRadians [
 	^ aRadius * aRadians sin
 ]
