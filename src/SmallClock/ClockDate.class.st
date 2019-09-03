@@ -1,9 +1,8 @@
 Class {
 	#name : #ClockDate,
-	#superclass : #Object,
+	#superclass : #ClockElement,
 	#instVars : [
-		'rotation',
-		'elements'
+		'rotation'
 	],
 	#category : #SmallClock
 }
@@ -15,13 +14,7 @@ ClockDate class >> start [
 
 { #category : #accessing }
 ClockDate >> arcRadians: index [
-"Clock surround start from the top, and not from the 0 of the circle, so remove Float halfPi"
-	^ rotation + (self circleSplit * index) - Float halfPi  
-]
-
-{ #category : #accessing }
-ClockDate >> circleSplit [
-	^ Float twoPi / (self label size) 
+	^ rotation + (self circleSplit * index) + self radianOffset 
 ]
 
 { #category : #accessing }
@@ -37,22 +30,6 @@ ClockDate >> dateLabelAt: aDate [
 { #category : #accessing }
 ClockDate >> dayNameAt: aDate [
 	^ #('Dimanche' 'Lundi' 'Mardi' 'Mercredi' 'Jeudi' 'Vendredi' 'Samedi') at: aDate  weekdayIndex.
-]
-
-{ #category : #accessing }
-ClockDate >> elements [
-	^ elements
-]
-
-{ #category : #accessing }
-ClockDate >> elements: aCollection [
-	| elementDetail |
-	elementDetail := Array new: aCollection size.
-	aCollection
-		collect: [ :string | string asStringMorph position: 0 @ 0 ]
-		into: elementDetail.
-	elements := elementDetail.
-	^ self
 ]
 
 { #category : #accessing }
@@ -77,9 +54,7 @@ ClockDate >> monthNameAt: aDate [
 { #category : #accessing }
 ClockDate >> position: aPoint [
 	rotation := rotation - self speed.
-	elements
-		withIndexDo:
-			[ :element :index | self updateElementPosition: element atIndex: index to: aPoint ]
+	self updateElementsPositions: aPoint
 ]
 
 { #category : #accessing }
@@ -94,46 +69,4 @@ ClockDate >> speed [
 	^ 0.06
 
 
-]
-
-{ #category : #accessing }
-ClockDate >> start [
-	self elements do: [ :element | element comeToFront openInWorld ].
-
-
-]
-
-{ #category : #accessing }
-ClockDate >> stop [
-	elements do: [ :element | element delete ]
-
-
-]
-
-{ #category : #accessing }
-ClockDate >> updateElementPosition: aStringMorph atIndex: elementIndex to: aPoint [
-	| xPosition yPosition radian |
-	radian := self arcRadians: elementIndex.
-	xPosition := self xCartesianCoordinateFrom: self radius and: radian.
-	yPosition := self yCartesianCoordinateFrom: self radius and: radian.
-	aStringMorph position: xPosition @ yPosition + aPoint
-]
-
-{ #category : #accessing }
-ClockDate >> updatePoint: aStringMorph index: elementIndex to: aPoint [
-	| xPosition yPosition radian |
-	radian := self arcRadians: elementIndex.
-	xPosition := self xCartesianCoordinateFrom: self radius and: radian.
-	yPosition := self yCartesianCoordinateFrom: self radius and: radian.
-	aStringMorph position: xPosition @ yPosition + aPoint
-]
-
-{ #category : #accessing }
-ClockDate >> xCartesianCoordinateFrom: aRadius and:  aRadians [
-	^ aRadius * (aRadians cos).
-]
-
-{ #category : #accessing }
-ClockDate >> yCartesianCoordinateFrom: aRadius and: aRadians [
-	^ aRadius * aRadians sin
 ]

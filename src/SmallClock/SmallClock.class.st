@@ -2,7 +2,6 @@ Class {
 	#name : #SmallClock,
 	#superclass : #Object,
 	#instVars : [
-		'center',
 		'surround',
 		'date',
 		'process',
@@ -58,29 +57,22 @@ SmallClock class >> worldMenu: aBuilder [
 ]
 
 { #category : #accessing }
-SmallClock >> center [ 
-^ center ifNil: [center := (#* asStringMorph)]
-]
-
-{ #category : #accessing }
 SmallClock >> mouseOffset [
 	^ 75 @ 75
 ]
 
 { #category : #accessing }
 SmallClock >> position: aPoint [
-	self center position: aPoint.
-	surround position: aPoint.
-	date position: aPoint.
-	second position: aPoint.
-	minute position: aPoint.
-	hour position: aPoint.
+	surround position: 100@100.
+	date position: 100@100.
+	second position: 100@100.
+	minute position: 100@100.
+	hour position: 100@100.
 	^self.
 ]
 
 { #category : #accessing }
 SmallClock >> start [
-	self center comeToFront openInWorld.
 	surround := ClockSurround start.
 	date := ClockDate start.
 	second := ClockNeedleSecond start.
@@ -94,7 +86,6 @@ SmallClock >> start [
 
 { #category : #accessing }
 SmallClock >> stop [
-	center delete.
 	surround stop.
 	date stop.
 	second stop.
