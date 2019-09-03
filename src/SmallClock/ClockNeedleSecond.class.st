@@ -2,7 +2,8 @@ Class {
 	#name : #ClockNeedleSecond,
 	#superclass : #Object,
 	#instVars : [
-		'elements'
+		'elements',
+		'time'
 	],
 	#category : #SmallClock
 }
@@ -14,19 +15,9 @@ ClockNeedleSecond class >> start [
 ]
 
 { #category : #accessing }
-ClockNeedleSecond >> arcRadians: time [
+ClockNeedleSecond >> arcRadians: index [
 "Clock surround start from the top, and not from the 0 of the circle, so remove Float halfPi"
-	^ (Float pi * time second) / 30 - Float halfPi  
-]
-
-{ #category : #accessing }
-ClockNeedleSecond >> circleX: radians [
-	^ self radius * (radians cos).
-]
-
-{ #category : #accessing }
-ClockNeedleSecond >> circleY: radians [
-	^ self radius * (radians sin).
+	^ ((Float pi * time) / 30) - Float halfPi  
 ]
 
 { #category : #accessing }
@@ -53,19 +44,20 @@ ClockNeedleSecond >> initialize [
 
 { #category : #accessing }
 ClockNeedleSecond >> label [
-	^ '. . . . .' findTokens: ' '
+	^ '.....' asOrderedCollection 
 
 ]
 
 { #category : #accessing }
 ClockNeedleSecond >> position: aPoint [
+time := DateAndTime now second.
 1 to: (elements size) do: [ :index | self updatePoint: (elements at: index) index: index to: aPoint ].
 
 ]
 
 { #category : #accessing }
 ClockNeedleSecond >> radius [ 
-	^ 1
+	^ 6
 
 ]
 
@@ -81,9 +73,19 @@ ClockNeedleSecond >> stop [
 
 { #category : #'as yet unclassified' }
 ClockNeedleSecond >> updatePoint: aStringMorph index: elementIndex to: aPoint [
-	|xPosition yPosition time|
-	time := DateAndTime now.
-	xPosition := (self circleX: (self arcRadians: time)) - (2.7 * elementIndex).
-	yPosition := (self circleY: (self arcRadians: time)) - (7 * elementIndex).
+	|xPosition yPosition radian|
+	radian := self arcRadians: elementIndex.
+	xPosition := (self xCartesianCoordinateFrom: self radius and: radian) * elementIndex.
+	yPosition := (self yCartesianCoordinateFrom: self radius and: radian) * elementIndex.
 	aStringMorph position: xPosition @ yPosition + aPoint.
+]
+
+{ #category : #accessing }
+ClockNeedleSecond >> xCartesianCoordinateFrom: aRadius and:  aRadians [
+	^ aRadius * (aRadians cos).
+]
+
+{ #category : #accessing }
+ClockNeedleSecond >> yCartesianCoordinateFrom: aRadius and: aRadians [
+	^ aRadius * (aRadians sin).
 ]

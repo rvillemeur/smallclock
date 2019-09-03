@@ -70,7 +70,7 @@ ClockSurround >> position: aPoint [
 
 { #category : #accessing }
 ClockSurround >> radius [ 
-	^ 40
+	^ 45
 
 ]
 
