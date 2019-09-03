@@ -50,14 +50,15 @@ ClockNeedleSecond >> label [
 
 { #category : #accessing }
 ClockNeedleSecond >> position: aPoint [
-time := DateAndTime now second.
-1 to: (elements size) do: [ :index | self updatePoint: (elements at: index) index: index to: aPoint ].
-
+	time := DateAndTime now second.
+	elements
+		withIndexDo:
+			[ :element :index | self updateElementPosition: element atIndex: index to: aPoint ].
 ]
 
 { #category : #accessing }
 ClockNeedleSecond >> radius [ 
-	^ 6
+	^ 8
 
 ]
 
@@ -72,7 +73,7 @@ ClockNeedleSecond >> stop [
 ]
 
 { #category : #'as yet unclassified' }
-ClockNeedleSecond >> updatePoint: aStringMorph index: elementIndex to: aPoint [
+ClockNeedleSecond >> updateElementPosition: aStringMorph atIndex: elementIndex to: aPoint [
 	|xPosition yPosition radian|
 	radian := self arcRadians: elementIndex.
 	xPosition := (self xCartesianCoordinateFrom: self radius and: radian) * elementIndex.
@@ -87,5 +88,5 @@ ClockNeedleSecond >> xCartesianCoordinateFrom: aRadius and:  aRadians [
 
 { #category : #accessing }
 ClockNeedleSecond >> yCartesianCoordinateFrom: aRadius and: aRadians [
-	^ aRadius * (aRadians sin).
+	^ aRadius * aRadians sin
 ]

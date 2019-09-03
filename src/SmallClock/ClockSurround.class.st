@@ -25,16 +25,6 @@ ClockSurround >> circleSplit [
 ]
 
 { #category : #accessing }
-ClockSurround >> circleX: radians [
-	^ self radius * (radians cos).
-]
-
-{ #category : #accessing }
-ClockSurround >> circleY: radians [
-	^ self radius * (radians sin).
-]
-
-{ #category : #accessing }
 ClockSurround >> elements [
 	^ elements
 ]
@@ -64,13 +54,14 @@ ClockSurround >> label [
 
 { #category : #accessing }
 ClockSurround >> position: aPoint [
-1 to: (elements size) do: [ :index | self updatePoint: (elements at: index) index: index to: aPoint ].
-
+	elements
+		withIndexDo:
+			[ :element :index | self updateElementPosition: element atIndex: index to: aPoint ]
 ]
 
 { #category : #accessing }
 ClockSurround >> radius [ 
-	^ 45
+	^ 48
 
 ]
 
@@ -85,9 +76,20 @@ ClockSurround >> stop [
 ]
 
 { #category : #'as yet unclassified' }
-ClockSurround >> updatePoint: aStringMorph index: elementIndex to: aPoint [
-	|xPosition yPosition|
-	xPosition := self circleX: (self arcRadians: elementIndex).
-	yPosition := self circleY: (self arcRadians: elementIndex).
-	aStringMorph position: xPosition @ yPosition + aPoint.
+ClockSurround >> updateElementPosition: aStringMorph atIndex: elementIndex to: aPoint [
+	| xPosition yPosition radian |
+	radian := self arcRadians: elementIndex.
+	xPosition := self xCartesianCoordinateFrom: self radius and: radian.
+	yPosition := self yCartesianCoordinateFrom: self radius and: radian.
+	aStringMorph position: xPosition @ yPosition + aPoint
+]
+
+{ #category : #accessing }
+ClockSurround >> xCartesianCoordinateFrom: aRadius and: aRadians [
+	^ aRadius * aRadians cos
+]
+
+{ #category : #accessing }
+ClockSurround >> yCartesianCoordinateFrom: aRadius and: aRadians [
+	^ aRadius * aRadians sin
 ]

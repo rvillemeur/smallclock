@@ -67,9 +67,10 @@ SmallClock >> mouseOffset [
 
 { #category : #accessing }
 SmallClock >> position: aPoint [
-	self center position: aPoint.
-	surround position: aPoint.
-	date position: aPoint.
+	self center position: 100@100.
+	surround position: 100@100.
+	date position: 100@100.
+	second position: 100@100.
 	^self.
 ]
 
