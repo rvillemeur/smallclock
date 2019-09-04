@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #tests }
-ClockSurroundElementTest >> testArcRadians [
+ClockSurroundElementTest >> testArcRadiansOn [
 	| surround split |
 	surround :=  ClockSurroundElement
 				label: '+'
@@ -42,57 +42,6 @@ ClockSurroundElementTest >> testCircleSplit [
 		on: 12.
 	self assert: (surround circleSplit: 12) closeTo: Float twoPi / 12.
 	self assert: (surround circleSplit: 6) closeTo: Float twoPi / 6
-]
-
-{ #category : #tests }
-ClockSurroundElementTest >> testCircleX [
-	| surround|
-	surround := ClockSurroundElement
-		label: '+'
-		radius: 40
-		index: 1
-		on: 12.
-	
-	self
-		assert: (surround xCartesianCoordinateFrom: surround radius and: 0)
-		equals: surround radius.
-	self
-		assert: (surround xCartesianCoordinateFrom: surround radius and: Float halfPi)
-		closeTo: 0.
-	self
-		assert: (surround xCartesianCoordinateFrom: surround radius and: Float pi)
-		equals: surround radius * -1.
-	self
-		assert:
-			(surround
-				xCartesianCoordinateFrom: surround radius
-				and: Float pi + Float halfPi)
-		closeTo: 0
-]
-
-{ #category : #tests }
-ClockSurroundElementTest >> testCircleY [
-	| surround |
-	surround := ClockSurroundElement
-		label: '+'
-		radius: 40
-		index: 1
-		on: 12.
-	self
-		assert: (surround yCartesianCoordinateFrom: surround radius and: 0)
-		closeTo: 0.
-	self
-		assert: (surround yCartesianCoordinateFrom: surround radius and: Float halfPi)
-		equals: surround radius.
-	self
-		assert: (surround yCartesianCoordinateFrom: surround radius and: Float pi)
-		closeTo: 0.
-	self
-		assert:
-			(surround
-				yCartesianCoordinateFrom: surround radius
-				and: Float pi + Float halfPi)
-		equals: surround radius * -1
 ]
 
 { #category : #tests }
@@ -130,4 +79,55 @@ ClockSurroundElementTest >> testNewPositions [
 	surround position: 100 @ 100.
 	self assert: (surround label position) closeTo: 100 @ 140.
 	self assert: (surround label contents) equals: '/'.
+]
+
+{ #category : #tests }
+ClockSurroundElementTest >> testXCartesianCoordinateFromand [
+	| surround|
+	surround := ClockSurroundElement
+		label: '+'
+		radius: 40
+		index: 1
+		on: 12.
+	
+	self
+		assert: (surround xCartesianCoordinateFrom: surround radius and: 0)
+		equals: surround radius.
+	self
+		assert: (surround xCartesianCoordinateFrom: surround radius and: Float halfPi)
+		closeTo: 0.
+	self
+		assert: (surround xCartesianCoordinateFrom: surround radius and: Float pi)
+		equals: surround radius * -1.
+	self
+		assert:
+			(surround
+				xCartesianCoordinateFrom: surround radius
+				and: Float pi + Float halfPi)
+		closeTo: 0
+]
+
+{ #category : #tests }
+ClockSurroundElementTest >> testYCartesianCoordinateFromand [
+	| surround |
+	surround := ClockSurroundElement
+		label: '+'
+		radius: 40
+		index: 1
+		on: 12.
+	self
+		assert: (surround yCartesianCoordinateFrom: surround radius and: 0)
+		closeTo: 0.
+	self
+		assert: (surround yCartesianCoordinateFrom: surround radius and: Float halfPi)
+		equals: surround radius.
+	self
+		assert: (surround yCartesianCoordinateFrom: surround radius and: Float pi)
+		closeTo: 0.
+	self
+		assert:
+			(surround
+				yCartesianCoordinateFrom: surround radius
+				and: Float pi + Float halfPi)
+		equals: surround radius * -1
 ]
