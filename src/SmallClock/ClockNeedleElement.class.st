@@ -1,5 +1,5 @@
 Class {
-	#name : #ClockNeedle,
+	#name : #ClockNeedleElement,
 	#superclass : #ClockElement,
 	#instVars : [
 		'time'
@@ -8,28 +8,28 @@ Class {
 }
 
 { #category : #initialization }
-ClockNeedle >> initialize [
+ClockNeedleElement >> initialize [
 	self elements: self label.
 	^ self
 ]
 
 { #category : #accessing }
-ClockNeedle >> position: aPoint [
+ClockNeedleElement >> position: aPoint [
 	time := DateAndTime now.
 	self elementsPositions: aPoint
 ]
 
 { #category : #accessing }
-ClockNeedle >> radius [ 
+ClockNeedleElement >> radius [ 
 	^ 10
 
 ]
 
 { #category : #accessing }
-ClockNeedle >> updatePositionOf: anElement atIndex: elementIndex to: aPoint [
+ClockNeedleElement >> updatePositionOf: anElement atIndex: elementIndex to: center [
 	|xPosition yPosition radian|
 	radian := self arcRadians: elementIndex.
 	xPosition := (self xCartesianCoordinateFrom: self radius and: radian) * (elementIndex - 1).
 	yPosition := (self yCartesianCoordinateFrom: self radius and: radian) * (elementIndex - 1).
-	anElement position: xPosition @ yPosition + aPoint.
+	anElement position: xPosition @ yPosition + center.
 ]

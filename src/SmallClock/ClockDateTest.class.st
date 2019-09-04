@@ -1,3 +1,6 @@
+"
+I'm testing Clock date label construction
+"
 Class {
 	#name : #ClockDateTest,
 	#superclass : #TestCase,
@@ -8,7 +11,7 @@ Class {
 ClockDateTest >> testDateLabelAt [
 	| label date |
 	date := Date fromString: '06/13/2019'.
-	label := ClockDate new dateLabelAt: date.
+	label := ClockDateElement new dateLabelAt: date.
 	self assert: label equals: ' Jeudi 13 Juin 2019'
 ]
 
@@ -16,7 +19,7 @@ ClockDateTest >> testDateLabelAt [
 ClockDateTest >> testDayNameAt [
 |weekday date|
 date := Date fromString: '06/13/2019'.
-weekday :=  ClockDate new dayNameAt: date.
+weekday :=  ClockDateElement new dayNameAt: date.
 self assert: weekday equals: 'Jeudi'
 ]
 
@@ -24,6 +27,6 @@ self assert: weekday equals: 'Jeudi'
 ClockDateTest >> testMonthNameAt [
 |monthName date|
 date := Date fromString: '06/13/2019'.
-monthName :=  ClockDate new monthNameAt: date.
+monthName :=  ClockDateElement new monthNameAt: date.
 self assert: monthName equals: 'Juin'
 ]

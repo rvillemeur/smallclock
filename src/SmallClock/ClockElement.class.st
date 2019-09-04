@@ -1,3 +1,8 @@
+"
+Each elements (date, surround, needles) are part of a circle, and know their specific radius, their center, as well as their position index inside their label. 
+
+For exemple, in the surround, '3' has the 3rd index, associated with its circle center position, and its radius
+"
 Class {
 	#name : #ClockElement,
 	#superclass : #Object,
@@ -6,6 +11,27 @@ Class {
 	],
 	#category : #SmallClock
 }
+
+{ #category : #'as yet unclassified' }
+ClockElement >> animate: elementCollection index: index from: aPoint [
+	| currentPosition element newPosition |
+	elementCollection isEmpty
+		ifTrue: [ ^ nil ].
+	element := elementCollection first.
+	currentPosition := element position.
+	newPosition := currentPosition
+		+ ((aPoint - currentPosition) * self animationSpeed).
+	self updatePositionOf: element atIndex: index to: aPoint.
+	self
+		animate: elementCollection allButFirst
+		index: index + 1
+		from: newPosition
+]
+
+{ #category : #accessing }
+ClockElement >> animationSpeed [
+	^ 0.6
+]
 
 { #category : #accessing }
 ClockElement >> arcRadians: index [ 
@@ -35,6 +61,7 @@ ClockElement >> elements: aCollection [
 
 { #category : #accessing }
 ClockElement >> elementsPositions: aPoint [
+	"self animate: elements index: 1 from: aPoint"
 	elements
 		withIndexDo:
 			[ :element :index | self updatePositionOf: element atIndex: index to: aPoint ]
@@ -78,12 +105,12 @@ ClockElement >> stop [
 ]
 
 { #category : #accessing }
-ClockElement >> updatePositionOf: anElement atIndex: elementIndex to: aPoint [
+ClockElement >> updatePositionOf: anElement atIndex: elementIndex to: center [
 	| xPosition yPosition radian |
 	radian := self arcRadians: elementIndex.
 	xPosition := self xCartesianCoordinateFrom: self radius and: radian .
 	yPosition := self yCartesianCoordinateFrom: self radius and: radian.
-	anElement position: xPosition @ yPosition + aPoint
+	anElement position: xPosition @ yPosition + center
 ]
 
 { #category : #accessing }

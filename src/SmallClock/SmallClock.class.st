@@ -1,3 +1,7 @@
+"
+I'm a clock where each component is displayed as String morph.
+
+"
 Class {
 	#name : #SmallClock,
 	#superclass : #Object,
@@ -74,10 +78,10 @@ SmallClock >> position: aPoint [
 { #category : #accessing }
 SmallClock >> start [
 	surround := ClockSurround start.
-	date := ClockDate start.
-	second := ClockNeedleSecond start.
-	minute := ClockNeedleMinute start.
-	hour := ClockNeedleHour start.
+	date := ClockDateElement start.
+	second := ClockNeedleSecondElement start.
+	minute := ClockNeedleMinuteElement start.
+	hour := ClockNeedleHourElement start.
 	process := [ [ true ]
 		whileTrue: [ self position: Smalltalk currentWorld activeHand position + self mouseOffset.
 			(1 / 60) seconds asDelay wait ] ] forkAt: Processor lowestPriority.

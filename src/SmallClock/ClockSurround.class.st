@@ -1,18 +1,36 @@
+"
+I'm the surround of clock, composed of multiple clock surround element.
+
+"
 Class {
 	#name : #ClockSurround,
-	#superclass : #ClockElement,
+	#superclass : #Object,
+	#instVars : [
+		'elements'
+	],
 	#category : #SmallClock
 }
 
 { #category : #accessing }
 ClockSurround class >> start [
 	^self new start
-
 ]
 
 { #category : #accessing }
-ClockSurround >> arcRadians: index [
-	^ self circleSplit * index + self radianOffset
+ClockSurround >> elements [
+	^ elements
+]
+
+{ #category : #accessing }
+ClockSurround >> elements: aCollection [
+	elements := aCollection
+		collectWithIndex: [ :string :index | 
+			ClockSurroundElement
+				label: string asStringMorph
+				radius: self radius
+				index: index
+				on: aCollection size ].
+	^ self
 ]
 
 { #category : #initialization }
@@ -29,11 +47,27 @@ ClockSurround >> label [
 
 { #category : #accessing }
 ClockSurround >> position: aPoint [
-	self elementsPositions: aPoint
+	elements
+		do:
+			[ :element | element position: aPoint ]
 ]
 
 { #category : #accessing }
 ClockSurround >> radius [ 
 	^ 48
+
+]
+
+{ #category : #accessing }
+ClockSurround >> start [
+	self elements do: [ :element | element start ].
+
+
+]
+
+{ #category : #accessing }
+ClockSurround >> stop [
+	elements do: [ :element | element stop ]
+
 
 ]

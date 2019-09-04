@@ -1,5 +1,5 @@
 Class {
-	#name : #ClockDate,
+	#name : #ClockDateElement,
 	#superclass : #ClockElement,
 	#instVars : [
 		'rotation'
@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #accessing }
-ClockDate class >> start [
+ClockDateElement class >> start [
 	^self new start
 ]
 
 { #category : #accessing }
-ClockDate >> arcRadians: index [
+ClockDateElement >> arcRadians: index [
 	^ rotation + (self circleSplit * index) + self radianOffset 
 ]
 
 { #category : #accessing }
-ClockDate >> dateLabelAt: aDate [
+ClockDateElement >> dateLabelAt: aDate [
 	| dayName monthName yearName today |
 	dayName := self dayNameAt: aDate.
 	monthName := self monthNameAt: aDate.
@@ -28,44 +28,44 @@ ClockDate >> dateLabelAt: aDate [
 ]
 
 { #category : #accessing }
-ClockDate >> dayNameAt: aDate [
+ClockDateElement >> dayNameAt: aDate [
 	^ #('Dimanche' 'Lundi' 'Mardi' 'Mercredi' 'Jeudi' 'Vendredi' 'Samedi') at: aDate  weekdayIndex.
 ]
 
 { #category : #accessing }
-ClockDate >> initialize [
+ClockDateElement >> initialize [
 	self elements: self label.
 	rotation := 0.
 	^ self
 ]
 
 { #category : #accessing }
-ClockDate >> label [
+ClockDateElement >> label [
 	^ (self dateLabelAt: Date today) asOrderedCollection 
 ]
 
 { #category : #accessing }
-ClockDate >> monthNameAt: aDate [
+ClockDateElement >> monthNameAt: aDate [
 	^ #('Janvier' 'Février' 'Mars' 'Avril' 'Mai' 'Juin' 'Juillet' 'Août' 'Septembre' 'Octobre' 'Novembre' 'Décembre') at: aDate monthIndex.
 
 
 ]
 
 { #category : #accessing }
-ClockDate >> position: aPoint [
+ClockDateElement >> position: aPoint [
 	rotation := rotation - self speed.
 	self elementsPositions: aPoint
 ]
 
 { #category : #accessing }
-ClockDate >> radius [
+ClockDateElement >> radius [
 	^ 60
 
 
 ]
 
 { #category : #accessing }
-ClockDate >> speed [
+ClockDateElement >> speed [
 	^ 0.06
 
 

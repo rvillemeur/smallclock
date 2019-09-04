@@ -1,22 +1,22 @@
 Class {
-	#name : #ClockNeedleMinute,
-	#superclass : #ClockNeedle,
+	#name : #ClockNeedleMinuteElement,
+	#superclass : #ClockNeedleElement,
 	#category : #SmallClock
 }
 
 { #category : #accessing }
-ClockNeedleMinute class >> start [
+ClockNeedleMinuteElement class >> start [
 	^self new start
 
 ]
 
 { #category : #accessing }
-ClockNeedleMinute >> arcRadians: index [
+ClockNeedleMinuteElement >> arcRadians: index [
 	^ Float pi * time minute / 30 + self radianOffset 
 ]
 
 { #category : #accessing }
-ClockNeedleMinute >> label [
+ClockNeedleMinuteElement >> label [
 	^ '....' asOrderedCollection 
 
 ]
