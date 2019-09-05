@@ -1,72 +1,132 @@
 Class {
 	#name : #ClockDateElement,
-	#superclass : #ClockElement,
+	#superclass : #Object,
 	#instVars : [
+		'center',
+		'radian',
+		'radius',
+		'label',
 		'rotation'
 	],
 	#category : #SmallClock
 }
 
 { #category : #accessing }
-ClockDateElement class >> start [
-	^self new start
+ClockDateElement class >> label: aLetter radius: circleRadius index: elementPosition on: numberOfElement [
+	| element split |
+	element := self new.
+	split := element circleSplit: numberOfElement.
+	element
+		label: aLetter;
+		radius: circleRadius;
+		radian: (element arcRadians: elementPosition on: split).
+	^ element
+]
+
+{ #category : #positioning }
+ClockDateElement >> arcRadians: index on: circleSplit [
+	^ circleSplit * index + self radianOffset
 ]
 
 { #category : #accessing }
-ClockDateElement >> arcRadians: index [
-	^ rotation + (self circleSplit * index) + self radianOffset 
+ClockDateElement >> center [
+	^ center
 ]
 
 { #category : #accessing }
-ClockDateElement >> dateLabelAt: aDate [
-	| dayName monthName yearName today |
-	dayName := self dayNameAt: aDate.
-	monthName := self monthNameAt: aDate.
-	yearName := aDate year asString.
-	today := aDate dayOfMonth asString.
-	^ ' ' , dayName , ' ' , today , ' ' , monthName , ' ' , yearName
+ClockDateElement >> center: anObject [
+	center := anObject
 ]
 
-{ #category : #accessing }
-ClockDateElement >> dayNameAt: aDate [
-	^ #('Dimanche' 'Lundi' 'Mardi' 'Mercredi' 'Jeudi' 'Vendredi' 'Samedi') at: aDate  weekdayIndex.
+{ #category : #positioning }
+ClockDateElement >> circleSplit: numberOfElement [
+	^ Float twoPi / numberOfElement
 ]
 
-{ #category : #accessing }
+{ #category : #creation }
 ClockDateElement >> initialize [
-	self elements: self label.
 	rotation := 0.
 	^ self
 ]
 
 { #category : #accessing }
 ClockDateElement >> label [
-	^ (self dateLabelAt: Date today) asOrderedCollection 
+	^ label
 ]
 
 { #category : #accessing }
-ClockDateElement >> monthNameAt: aDate [
-	^ #('Janvier' 'Février' 'Mars' 'Avril' 'Mai' 'Juin' 'Juillet' 'Août' 'Septembre' 'Octobre' 'Novembre' 'Décembre') at: aDate monthIndex.
-
-
+ClockDateElement >> label: anObject [
+	label := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #positioning }
 ClockDateElement >> position: aPoint [
-	rotation := rotation - self speed.
-	self elementsPositions: aPoint
+	|xPosition yPosition|
+	xPosition := self xCartesianCoordinateFrom: radius and: (radian - rotation) .
+	yPosition := self yCartesianCoordinateFrom: radius and: (radian - rotation).
+	rotation := rotation + self speed.
+	label position: xPosition @ yPosition + aPoint
+]
+
+{ #category : #accessing }
+ClockDateElement >> radian [
+	^ radian
+]
+
+{ #category : #accessing }
+ClockDateElement >> radian: anObject [
+	radian := anObject
+]
+
+{ #category : #positioning }
+ClockDateElement >> radianOffset [
+"Clock surround start from the top, and not from the horizontal 0 of the circle, so remove Float halfPi"
+	^ Float halfPi * -1
 ]
 
 { #category : #accessing }
 ClockDateElement >> radius [
-	^ 60
-
-
+	^ radius
 ]
 
 { #category : #accessing }
+ClockDateElement >> radius: anObject [
+	radius := anObject
+]
+
+{ #category : #accessing }
+ClockDateElement >> rotation [
+	^ rotation
+]
+
+{ #category : #accessing }
+ClockDateElement >> rotation: anObject [
+	rotation := anObject
+]
+
+{ #category : #creation }
 ClockDateElement >> speed [
 	^ 0.06
 
 
+]
+
+{ #category : #creation }
+ClockDateElement >> start [
+	self label comeToFront openInWorld
+]
+
+{ #category : #creation }
+ClockDateElement >> stop [
+	self label delete
+]
+
+{ #category : #positioning }
+ClockDateElement >> xCartesianCoordinateFrom: aRadius and: aRadians [
+	^ aRadius * aRadians cos
+]
+
+{ #category : #positioning }
+ClockDateElement >> yCartesianCoordinateFrom: aRadius and: aRadians [
+	^ aRadius * aRadians sin
 ]

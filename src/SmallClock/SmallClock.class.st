@@ -78,7 +78,7 @@ SmallClock >> position: aPoint [
 { #category : #accessing }
 SmallClock >> start [
 	surround := ClockSurround start.
-	date := ClockDateElement start.
+	date := ClockDate start.
 	second := ClockNeedleSecondElement start.
 	minute := ClockNeedleMinuteElement start.
 	hour := ClockNeedleHourElement start.
