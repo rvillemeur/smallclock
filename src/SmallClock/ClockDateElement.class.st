@@ -3,28 +3,29 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'center',
-		'radian',
+		'index',
 		'radius',
 		'label',
-		'rotation'
+		'rotation',
+		'circleSplit'
 	],
 	#category : #SmallClock
 }
 
 { #category : #accessing }
 ClockDateElement class >> label: aLetter radius: circleRadius index: elementPosition on: numberOfElement [
-	| element split |
+	| element |
 	element := self new.
-	split := element circleSplit: numberOfElement.
+	element circleSplit: numberOfElement.
 	element
 		label: aLetter;
 		radius: circleRadius;
-		radian: (element arcRadians: elementPosition on: split).
+		index: elementPosition.
 	^ element
 ]
 
 { #category : #positioning }
-ClockDateElement >> arcRadians: index on: circleSplit [
+ClockDateElement >> arcRadians [
 	^ circleSplit * index + self radianOffset
 ]
 
@@ -40,7 +41,18 @@ ClockDateElement >> center: anObject [
 
 { #category : #positioning }
 ClockDateElement >> circleSplit: numberOfElement [
-	^ Float twoPi / numberOfElement
+	circleSplit := Float twoPi / numberOfElement.
+	^ self
+]
+
+{ #category : #accessing }
+ClockDateElement >> index [
+	^ index
+]
+
+{ #category : #accessing }
+ClockDateElement >> index: anObject [
+	index := anObject
 ]
 
 { #category : #creation }
@@ -61,21 +73,12 @@ ClockDateElement >> label: anObject [
 
 { #category : #positioning }
 ClockDateElement >> position: aPoint [
-	|xPosition yPosition|
+	|xPosition yPosition radian|
+	radian := self arcRadians.
 	xPosition := self xCartesianCoordinateFrom: radius and: (radian - rotation) .
 	yPosition := self yCartesianCoordinateFrom: radius and: (radian - rotation).
 	rotation := rotation + self speed.
 	label position: xPosition @ yPosition + aPoint
-]
-
-{ #category : #accessing }
-ClockDateElement >> radian [
-	^ radian
-]
-
-{ #category : #accessing }
-ClockDateElement >> radian: anObject [
-	radian := anObject
 ]
 
 { #category : #positioning }

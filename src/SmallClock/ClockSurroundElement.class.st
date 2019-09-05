@@ -3,27 +3,28 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'center',
-		'radian',
+		'index',
 		'radius',
-		'label'
+		'label',
+		'circleSplit'
 	],
 	#category : #SmallClock
 }
 
 { #category : #accessing }
 ClockSurroundElement class >> label: aLetter radius: circleRadius index: elementPosition on: numberOfElement [
-	| element split |
+	| element |
 	element := self new.
-	split := element circleSplit: numberOfElement.
+	element circleSplit: numberOfElement.
 	element
 		label: aLetter;
 		radius: circleRadius;
-		radian: (element arcRadians: elementPosition on: split).
+		index: elementPosition.
 	^ element
 ]
 
 { #category : #positioning }
-ClockSurroundElement >> arcRadians: index on: circleSplit [
+ClockSurroundElement >> arcRadians [
 	^ circleSplit * index + self radianOffset
 ]
 
@@ -37,9 +38,25 @@ ClockSurroundElement >> center: anObject [
 	center := anObject
 ]
 
+{ #category : #accessing }
+ClockSurroundElement >> circleSplit [
+	^ circleSplit
+]
+
 { #category : #positioning }
 ClockSurroundElement >> circleSplit: numberOfElement [
-	^ Float twoPi / numberOfElement
+	circleSplit := Float twoPi / numberOfElement.
+	^ self
+]
+
+{ #category : #accessing }
+ClockSurroundElement >> index [
+	^ index
+]
+
+{ #category : #accessing }
+ClockSurroundElement >> index: anObject [
+	index := anObject
 ]
 
 { #category : #accessing }
@@ -54,21 +71,12 @@ ClockSurroundElement >> label: anObject [
 
 { #category : #positioning }
 ClockSurroundElement >> position: aPoint [
-	|xPosition yPosition|
+	|xPosition yPosition radian|
+	radian := self arcRadians.
 	xPosition := self xCartesianCoordinateFrom: radius and: radian .
 	yPosition := self yCartesianCoordinateFrom: radius and: radian.
 	label position: xPosition @ yPosition + aPoint
 	
-]
-
-{ #category : #accessing }
-ClockSurroundElement >> radian [
-	^ radian
-]
-
-{ #category : #accessing }
-ClockSurroundElement >> radian: anObject [
-	radian := anObject
 ]
 
 { #category : #positioning }

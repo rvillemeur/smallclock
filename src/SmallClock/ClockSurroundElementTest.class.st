@@ -9,27 +9,33 @@ Class {
 
 { #category : #tests }
 ClockSurroundElementTest >> testArcRadiansOn [
-	| surround split |
-	surround :=  ClockSurroundElement
-				label: '+'
-				radius: 40
-				index: 1
-				on: 12.
-	split := surround circleSplit: 12.
+	| surround |
+	surround := ClockSurroundElement
+		label: '+'
+		radius: 40
+		index: 1
+		on: 12.
 	self
-		assert: (surround arcRadians: 0 on: split)
-		equals: -1 * Float halfPi.
-	self
-		assert: (surround arcRadians: 1 on: split)
+		assert: surround arcRadians
 		equals: Float twoPi / 12 - Float halfPi.
-	self assert: (surround arcRadians: 3 on: split) equals: 0.
-	self
-		assert: (surround arcRadians: 6 on: split)
-		equals: Float pi - Float halfPi.
-	self assert: (surround arcRadians: 9 on: split) equals: Float pi.
-	self
-		assert: (surround arcRadians: 12 on: split)
-		equals: Float twoPi - Float halfPi
+	surround := ClockSurroundElement
+		label: '+'
+		radius: 40
+		index: 6
+		on: 12.
+	self assert: surround arcRadians equals: Float pi / 2.
+	surround := ClockSurroundElement
+		label: '+'
+		radius: 40
+		index: 3
+		on: 12.
+	self assert: surround arcRadians equals: 0.
+	surround := ClockSurroundElement
+		label: '+'
+		radius: 40
+		index: 9
+		on: 12.
+	self assert: surround arcRadians equals: Float pi
 ]
 
 { #category : #tests }
@@ -40,8 +46,13 @@ ClockSurroundElementTest >> testCircleSplit [
 		radius: 40
 		index: 1
 		on: 12.
-	self assert: (surround circleSplit: 12) closeTo: Float twoPi / 12.
-	self assert: (surround circleSplit: 6) closeTo: Float twoPi / 6
+	self assert: (surround circleSplit) closeTo: Float twoPi / 12.
+		surround := ClockSurroundElement
+		label: '+'
+		radius: 40
+		index: 1
+		on: 6.
+	self assert: (surround circleSplit) closeTo: Float twoPi / 6
 ]
 
 { #category : #tests }
