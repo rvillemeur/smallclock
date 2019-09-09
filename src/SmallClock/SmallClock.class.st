@@ -72,7 +72,7 @@ SmallClock >> position: aPoint [
 	surround position: 100@100.
 	date position: 100@100.
 	second position: 100@100 on: time.
-	minute position: 100@100 "on: time".
+	minute position: 100@100 on: time.
 	hour position: 100@100 "on: time".
 	^self.
 ]
@@ -82,7 +82,7 @@ SmallClock >> start [
 	surround := ClockSurround start.
 	date := ClockDate start.
 	second := ClockNeedleSecond  start.
-	minute := ClockNeedleMinuteElement start.
+	minute := ClockNeedleMinute  start.
 	hour := ClockNeedleHourElement start.
 	process := [ [ true ]
 		whileTrue: [ self position: Smalltalk currentWorld activeHand position + self mouseOffset.
