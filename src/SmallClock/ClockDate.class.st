@@ -63,10 +63,10 @@ ClockDate >> monthNameAt: aDate [
 ]
 
 { #category : #accessing }
-ClockDate >> position: aPoint [
+ClockDate >> position: aCircleCenter [
 	elements
 		do:
-			[ :element | element position: aPoint ]
+			[ :element | element position: aCircleCenter ]
 ]
 
 { #category : #accessing }

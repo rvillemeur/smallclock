@@ -1,9 +1,5 @@
-"
-I'm the surround of clock, composed of multiple clock surround element.
-
-"
 Class {
-	#name : #ClockSurround,
+	#name : #ClockNeedleSecond,
 	#superclass : #Object,
 	#instVars : [
 		'elements'
@@ -12,20 +8,20 @@ Class {
 }
 
 { #category : #accessing }
-ClockSurround class >> start [
+ClockNeedleSecond class >> start [
 	^self new start
 ]
 
 { #category : #accessing }
-ClockSurround >> elements [
+ClockNeedleSecond >> elements [
 	^ elements
 ]
 
 { #category : #accessing }
-ClockSurround >> elements: aCollection [
+ClockNeedleSecond >> elements: aCollection [
 	elements := aCollection
 		collectWithIndex: [ :string :index | 
-			ClockSurroundElement
+			ClockNeedleSecondElement 
 				label: string asStringMorph
 				radius: self radius
 				index: index
@@ -34,39 +30,39 @@ ClockSurround >> elements: aCollection [
 ]
 
 { #category : #initialization }
-ClockSurround >> initialize [
+ClockNeedleSecond >> initialize [
 	self elements: self label.
 	^ self
 ]
 
 { #category : #accessing }
-ClockSurround >> label [
-	^ '1 2 3 4 5 6 7 8 9 10 11 12' findTokens: ' '
+ClockNeedleSecond >> label [
+	^ '.....' asOrderedCollection 
 
 ]
 
 { #category : #accessing }
-ClockSurround >> position: aCircleCenter [
+ClockNeedleSecond >> position: aCircleCenter on: time [
 	elements
 		do:
-			[ :element | element position: aCircleCenter ]
+			[ :element | element position: aCircleCenter on: time ]
 ]
 
 { #category : #accessing }
-ClockSurround >> radius [ 
-	^ 48
+ClockNeedleSecond >> radius [ 
+	^ 10
 
 ]
 
 { #category : #accessing }
-ClockSurround >> start [
+ClockNeedleSecond >> start [
 	self elements do: [ :element | element start ].
 
 
 ]
 
 { #category : #accessing }
-ClockSurround >> stop [
+ClockNeedleSecond >> stop [
 	elements do: [ :element | element stop ]
 
 

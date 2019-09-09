@@ -70,12 +70,12 @@ ClockSurroundElement >> label: anObject [
 ]
 
 { #category : #positioning }
-ClockSurroundElement >> position: aPoint [
+ClockSurroundElement >> position: aCircleCenter [
 	|xPosition yPosition radian|
 	radian := self arcRadians.
 	xPosition := self xCartesianCoordinateFrom: radius and: radian .
 	yPosition := self yCartesianCoordinateFrom: radius and: radian.
-	label position: xPosition @ yPosition + aPoint
+	label position: xPosition @ yPosition + aCircleCenter
 	
 ]
 

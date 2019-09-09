@@ -72,13 +72,13 @@ ClockDateElement >> label: anObject [
 ]
 
 { #category : #positioning }
-ClockDateElement >> position: aPoint [
+ClockDateElement >> position: aCircleCenter [
 	|xPosition yPosition radian|
 	radian := self arcRadians.
 	xPosition := self xCartesianCoordinateFrom: radius and: (radian - rotation) .
 	yPosition := self yCartesianCoordinateFrom: radius and: (radian - rotation).
 	rotation := rotation + self speed.
-	label position: xPosition @ yPosition + aPoint
+	label position: xPosition @ yPosition + aCircleCenter
 ]
 
 { #category : #positioning }

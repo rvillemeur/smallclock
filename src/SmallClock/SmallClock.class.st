@@ -67,11 +67,13 @@ SmallClock >> mouseOffset [
 
 { #category : #accessing }
 SmallClock >> position: aPoint [
+|time|
+	time := DateAndTime now.
 	surround position: 100@100.
 	date position: 100@100.
-	second position: 100@100.
-	minute position: 100@100.
-	hour position: 100@100.
+	second position: 100@100 on: time.
+	minute position: 100@100 "on: time".
+	hour position: 100@100 "on: time".
 	^self.
 ]
 
@@ -79,7 +81,7 @@ SmallClock >> position: aPoint [
 SmallClock >> start [
 	surround := ClockSurround start.
 	date := ClockDate start.
-	second := ClockNeedleSecondElement start.
+	second := ClockNeedleSecond  start.
 	minute := ClockNeedleMinuteElement start.
 	hour := ClockNeedleHourElement start.
 	process := [ [ true ]
