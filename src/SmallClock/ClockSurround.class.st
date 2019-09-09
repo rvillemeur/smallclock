@@ -4,21 +4,13 @@ I'm the surround of clock, composed of multiple clock surround element.
 "
 Class {
 	#name : #ClockSurround,
-	#superclass : #Object,
-	#instVars : [
-		'elements'
-	],
+	#superclass : #ClockPart,
 	#category : #SmallClock
 }
 
 { #category : #accessing }
 ClockSurround class >> start [
 	^self new start
-]
-
-{ #category : #accessing }
-ClockSurround >> elements [
-	^ elements
 ]
 
 { #category : #accessing }
@@ -30,12 +22,6 @@ ClockSurround >> elements: aCollection [
 				radius: self radius
 				index: index
 				on: aCollection size ].
-	^ self
-]
-
-{ #category : #initialization }
-ClockSurround >> initialize [
-	self elements: self label.
 	^ self
 ]
 
@@ -55,19 +41,5 @@ ClockSurround >> position: aCircleCenter [
 { #category : #accessing }
 ClockSurround >> radius [ 
 	^ 48
-
-]
-
-{ #category : #accessing }
-ClockSurround >> start [
-	self elements do: [ :element | element start ].
-
-
-]
-
-{ #category : #accessing }
-ClockSurround >> stop [
-	elements do: [ :element | element stop ]
-
 
 ]

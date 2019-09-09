@@ -1,9 +1,6 @@
 Class {
 	#name : #ClockDate,
-	#superclass : #Object,
-	#instVars : [
-		'elements'
-	],
+	#superclass : #ClockPart,
 	#category : #SmallClock
 }
 
@@ -28,11 +25,6 @@ ClockDate >> dayNameAt: aDate [
 ]
 
 { #category : #accessing }
-ClockDate >> elements [
-	^ elements
-]
-
-{ #category : #accessing }
 ClockDate >> elements: aCollection [
 	elements := aCollection
 		collectWithIndex: [ :string :index | 
@@ -41,12 +33,6 @@ ClockDate >> elements: aCollection [
 				radius: self radius
 				index: index
 				on: aCollection size ].
-	^ self
-]
-
-{ #category : #accessing }
-ClockDate >> initialize [
-	self elements: self label.
 	^ self
 ]
 
@@ -73,18 +59,5 @@ ClockDate >> position: aCircleCenter [
 ClockDate >> radius [
 	^ 60
 
-
-]
-
-{ #category : #accessing }
-ClockDate >> start [
-	self elements do: [ :element | element start ].
-
-
-]
-
-{ #category : #accessing }
-ClockDate >> stop [
-	elements do: [ :element | element stop ]
 
 ]

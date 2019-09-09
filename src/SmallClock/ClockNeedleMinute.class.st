@@ -1,20 +1,12 @@
 Class {
 	#name : #ClockNeedleMinute,
-	#superclass : #Object,
-	#instVars : [
-		'elements'
-	],
+	#superclass : #ClockPart,
 	#category : #SmallClock
 }
 
 { #category : #accessing }
 ClockNeedleMinute class >> start [
 	^self new start
-]
-
-{ #category : #accessing }
-ClockNeedleMinute >> elements [
-	^ elements
 ]
 
 { #category : #accessing }
@@ -26,12 +18,6 @@ ClockNeedleMinute >> elements: aCollection [
 				radius: self radius
 				index: index
 				on: aCollection size ].
-	^ self
-]
-
-{ #category : #initialization }
-ClockNeedleMinute >> initialize [
-	self elements: self label.
 	^ self
 ]
 
@@ -51,19 +37,5 @@ ClockNeedleMinute >> position: aCircleCenter on: time [
 { #category : #accessing }
 ClockNeedleMinute >> radius [ 
 	^ 10
-
-]
-
-{ #category : #accessing }
-ClockNeedleMinute >> start [
-	self elements do: [ :element | element start ].
-
-
-]
-
-{ #category : #accessing }
-ClockNeedleMinute >> stop [
-	elements do: [ :element | element stop ]
-
 
 ]
