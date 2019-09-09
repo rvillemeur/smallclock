@@ -1,7 +1,7 @@
 Class {
 	#name : #ClockNeedleHour,
 	#superclass : #ClockPart,
-	#category : #SmallClock
+	#category : #'SmallClock-core'
 }
 
 { #category : #accessing }

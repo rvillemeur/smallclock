@@ -1,7 +1,7 @@
 Class {
 	#name : #ClockDate,
 	#superclass : #ClockPart,
-	#category : #SmallClock
+	#category : #'SmallClock-core'
 }
 
 { #category : #accessing }

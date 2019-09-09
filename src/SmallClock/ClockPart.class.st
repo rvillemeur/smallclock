@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'elements'
 	],
-	#category : #SmallClock
+	#category : #'SmallClock-core'
 }
 
 { #category : #accessing }

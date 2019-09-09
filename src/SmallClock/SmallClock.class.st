@@ -16,7 +16,7 @@ Class {
 	#classVars : [
 		'instance'
 	],
-	#category : #SmallClock
+	#category : #'SmallClock-core'
 }
 
 { #category : #'class initialization' }

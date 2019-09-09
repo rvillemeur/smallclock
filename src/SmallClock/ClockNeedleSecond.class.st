@@ -1,7 +1,7 @@
 Class {
 	#name : #ClockNeedleSecond,
 	#superclass : #ClockPart,
-	#category : #SmallClock
+	#category : #'SmallClock-core'
 }
 
 { #category : #accessing }

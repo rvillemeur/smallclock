@@ -5,7 +5,7 @@ I'm the surround of clock, composed of multiple clock surround element.
 Class {
 	#name : #ClockSurround,
 	#superclass : #ClockPart,
-	#category : #SmallClock
+	#category : #'SmallClock-core'
 }
 
 { #category : #accessing }
