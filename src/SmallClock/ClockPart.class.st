@@ -8,6 +8,11 @@ Class {
 }
 
 { #category : #accessing }
+ClockPart >> animationSpeed [
+	^ 0.06
+]
+
+{ #category : #accessing }
 ClockPart >> elements [
 	^ elements
 ]

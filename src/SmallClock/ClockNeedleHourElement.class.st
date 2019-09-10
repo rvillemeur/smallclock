@@ -4,17 +4,6 @@ Class {
 	#category : #'SmallClock-core'
 }
 
-{ #category : #accessing }
-ClockNeedleHourElement class >> label: aLetter radius: circleRadius index: elementPosition on: numberOfElement [
-	| element |
-	element := self new.
-	element
-		label: aLetter;
-		radius: circleRadius;
-		index: elementPosition.
-	^ element
-]
-
 { #category : #positioning }
 ClockNeedleHourElement >> arcRadiansOn: time [
 	| minuteOffset |

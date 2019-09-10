@@ -10,6 +10,22 @@ ClockDate class >> start [
 ]
 
 { #category : #accessing }
+ClockDate >> animate: elementCollection index: index from: aCenter [
+	| currentPosition element newPosition |
+	elementCollection isEmpty
+		ifTrue: [ ^ nil ].
+	element := elementCollection first.
+	currentPosition := element center.
+	newPosition := currentPosition
+		+ ((aCenter - currentPosition) * self animationSpeed).
+	element position: aCenter.
+	self
+		animate: elementCollection allButFirst
+		index: index + 1
+		from: newPosition
+]
+
+{ #category : #accessing }
 ClockDate >> dateLabelAt: aDate [
 	| dayName monthName yearName today |
 	dayName := self dayNameAt: aDate.
@@ -50,9 +66,7 @@ ClockDate >> monthNameAt: aDate [
 
 { #category : #accessing }
 ClockDate >> position: aCircleCenter [
-	elements
-		do:
-			[ :element | element position: aCircleCenter ]
+	self animate: elements index: 1 from: aCircleCenter
 ]
 
 { #category : #accessing }

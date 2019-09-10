@@ -7,6 +7,19 @@ Class {
 	#category : #'SmallClock-core'
 }
 
+{ #category : #accessing }
+ClockFaceElement class >> label: aLetter radius: circleRadius index: elementPosition on: numberOfElement [
+	| element |
+	element := self new.
+	element circleSplit: numberOfElement.
+	element
+		label: aLetter;
+		radius: circleRadius;
+		index: elementPosition;
+		center: 0@0.
+	^ element
+]
+
 { #category : #positioning }
 ClockFaceElement >> arcRadians [
 	^ circleSplit * index + self radianOffset

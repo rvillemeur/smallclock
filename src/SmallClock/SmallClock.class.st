@@ -69,11 +69,11 @@ SmallClock >> mouseOffset [
 SmallClock >> position: aPoint [
 |time|
 	time := DateAndTime now.
-	surround position: 100@100.
-	date position: 100@100.
-	second position: 100@100 on: time.
-	minute position: 100@100 on: time.
-	hour position: 100@100 on: time.
+	surround position: aPoint.
+	date position: aPoint.
+	second position: aPoint on: time.
+	minute position: aPoint on: time.
+	hour position: aPoint on: time.
 	^self.
 ]
 
