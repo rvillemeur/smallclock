@@ -1,5 +1,9 @@
 "
-I'm a clock where each component is displayed as String morph.
+I'm a clock where each component is displayed as String morph, and the entry point of the small program.
+There is a menu added to the world so user can start and stop me.
+
+
+
 
 "
 Class {

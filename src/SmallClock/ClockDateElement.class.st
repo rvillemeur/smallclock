@@ -1,3 +1,8 @@
+"
+I'm an element of clock date. In addition to the animation displayed when the user move the mouse, I also rotate around my center.
+
+
+"
 Class {
 	#name : #ClockDateElement,
 	#superclass : #ClockFaceElement,

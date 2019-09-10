@@ -1,3 +1,6 @@
+"
+I'm the surround face element of the clock. I'm static when the mouse doesn't move.
+"
 Class {
 	#name : #ClockSurroundElement,
 	#superclass : #ClockFaceElement,

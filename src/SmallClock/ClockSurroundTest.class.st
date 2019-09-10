@@ -1,3 +1,6 @@
+"
+I'm testing the construction and accessibility of clock surround. The other part of the clock have been clone and adapted from me.
+"
 Class {
 	#name : #ClockSurroundTest,
 	#superclass : #TestCase,

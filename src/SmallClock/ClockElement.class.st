@@ -1,3 +1,22 @@
+"
+I'm the base of each clock element: 
+- a letter in clock date
+- a number in clock surround
+- a dot in one of the needles.
+Each element is independantm and has its own radius.
+When all element of the clock part are displayed at the same time, then the clock part will be displayed completely.
+
+Each element is positioned on a circle, with its own radius.
+The position of each element is calculated with basic trigonometry formulae (sin, cos), with radius, just like you would position an item on a circle.
+
+The element are separated between clock face and clock needle. 
+* Each element of the Clock face are displayed as a circle with a center.
+* Each element of a clock needle are displayed as a line starting from the center.
+
+
+
+
+"
 Class {
 	#name : #ClockElement,
 	#superclass : #Object,

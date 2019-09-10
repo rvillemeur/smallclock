@@ -1,3 +1,8 @@
+"
+I represent the clock date part.
+I'm build with a specific string representing the date in French, like ""mardi 29 septembre 2019"".
+
+"
 Class {
 	#name : #ClockDate,
 	#superclass : #ClockPart,

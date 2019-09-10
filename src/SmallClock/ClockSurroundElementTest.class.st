@@ -1,3 +1,6 @@
+"
+I'm testing the position of clock surround. The code is pretty similar for the other part of the clock
+"
 Class {
 	#name : #ClockSurroundElementTest,
 	#superclass : #TestCase,

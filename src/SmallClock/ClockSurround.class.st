@@ -1,5 +1,6 @@
 "
-I'm the surround of clock, composed of multiple clock surround element.
+I represent the clock surround of clock face, with number from 1 to 12.
+With my latest incantation, I have switch to roman number representation.
 
 "
 Class {
@@ -44,7 +45,7 @@ ClockSurround >> elements: aCollection [
 
 { #category : #accessing }
 ClockSurround >> label [
-	^ '1 2 3 4 5 6 7 8 9 10 11 12' findTokens: ' '
+	^ 'I II III IV V VI VII VIII IX X XI XII' findTokens: ' '
 
 ]
 
