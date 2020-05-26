@@ -50,18 +50,17 @@ SmallClock class >> worldMenu: aBuilder [
 	(aBuilder item: #SmallClock)
 		order: 4.0;
 		with: [ (aBuilder item: 'Start')
-				action: [ SmallClock start ];
+				action: [ self start ];
 				parent: #SmallClock;
-				icon: ThemeIcons current smallAddIcon;
+				icon: (self iconNamed: #smallAddIcon);
 				order: 0;
 				help: 'start clock animation'.
 			(aBuilder item: 'stop')
-				action: [ SmallClock stop ];
+				action: [ self stop ];
 				parent: #SmallClock;
-				icon: ThemeIcons current smallCancelIcon;
+				icon: (self iconNamed: #smallCancelIcon);
 				order: 999;
 				help: 'stop clock animation' ]
-
 ]
 
 { #category : #accessing }
