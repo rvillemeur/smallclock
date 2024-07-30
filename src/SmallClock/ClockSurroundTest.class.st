@@ -2,15 +2,17 @@
 I'm testing the construction and accessibility of clock surround. The other part of the clock have been clone and adapted from me.
 "
 Class {
-	#name : #ClockSurroundTest,
-	#superclass : #TestCase,
+	#name : 'ClockSurroundTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'elements'
 	],
-	#category : #'SmallClock-Tests'
+	#category : 'SmallClock-Tests',
+	#package : 'SmallClock',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 ClockSurroundTest >> testClockSurround [
 	|surround|
 	surround := ClockSurround new.

@@ -2,12 +2,14 @@
 I'm testing Clock date label construction
 "
 Class {
-	#name : #ClockDateTest,
-	#superclass : #TestCase,
-	#category : #'SmallClock-Tests'
+	#name : 'ClockDateTest',
+	#superclass : 'TestCase',
+	#category : 'SmallClock-Tests',
+	#package : 'SmallClock',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 ClockDateTest >> testDateLabelAt [
 	| label date |
 	date := Date fromString: '06/13/2019'.
@@ -15,7 +17,7 @@ ClockDateTest >> testDateLabelAt [
 	self assert: label equals: ' Jeudi 13 Juin 2019'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ClockDateTest >> testDayNameAt [
 |weekday date|
 date := Date fromString: '06/13/2019'.
@@ -23,7 +25,7 @@ weekday :=  ClockDate new dayNameAt: date.
 self assert: weekday equals: 'Jeudi'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ClockDateTest >> testMonthNameAt [
 |monthName date|
 date := Date fromString: '06/13/2019'.

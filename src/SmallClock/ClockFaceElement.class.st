@@ -1,13 +1,15 @@
 Class {
-	#name : #ClockFaceElement,
-	#superclass : #ClockElement,
+	#name : 'ClockFaceElement',
+	#superclass : 'ClockElement',
 	#instVars : [
 		'circleSplit'
 	],
-	#category : #'SmallClock-core'
+	#category : 'SmallClock-core',
+	#package : 'SmallClock',
+	#tag : 'core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockFaceElement class >> label: aLetter radius: circleRadius index: elementPosition on: numberOfElement [
 	| element |
 	element := self new.
@@ -20,17 +22,17 @@ ClockFaceElement class >> label: aLetter radius: circleRadius index: elementPosi
 	^ element
 ]
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 ClockFaceElement >> arcRadians [
 	^ circleSplit * index + self radianOffset
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockFaceElement >> circleSplit [
 	^ circleSplit
 ]
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 ClockFaceElement >> circleSplit: numberOfElement [
 	circleSplit := Float twoPi / numberOfElement.
 	^ self

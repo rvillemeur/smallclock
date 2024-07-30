@@ -2,15 +2,17 @@
 I'm testing the position of clock surround. The code is pretty similar for the other part of the clock
 "
 Class {
-	#name : #ClockSurroundElementTest,
-	#superclass : #TestCase,
+	#name : 'ClockSurroundElementTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'elements'
 	],
-	#category : #'SmallClock-Tests'
+	#category : 'SmallClock-Tests',
+	#package : 'SmallClock',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 ClockSurroundElementTest >> testArcRadiansOn [
 	| surround |
 	surround := ClockSurroundElement
@@ -41,7 +43,7 @@ ClockSurroundElementTest >> testArcRadiansOn [
 	self assert: surround arcRadians equals: Float pi
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ClockSurroundElementTest >> testCircleSplit [
 	| surround |
 	surround := ClockSurroundElement
@@ -58,7 +60,7 @@ ClockSurroundElementTest >> testCircleSplit [
 	self assert: (surround circleSplit) closeTo: Float twoPi / 6
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ClockSurroundElementTest >> testNewPositions [
 	| surround |
 	surround := ClockSurroundElement
@@ -95,7 +97,7 @@ ClockSurroundElementTest >> testNewPositions [
 	self assert: (surround label contents) equals: '/'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ClockSurroundElementTest >> testXCartesianCoordinateFromand [
 	| surround|
 	surround := ClockSurroundElement
@@ -121,7 +123,7 @@ ClockSurroundElementTest >> testXCartesianCoordinateFromand [
 		closeTo: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 ClockSurroundElementTest >> testYCartesianCoordinateFromand [
 	| surround |
 	surround := ClockSurroundElement

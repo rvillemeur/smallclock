@@ -4,18 +4,20 @@ With my latest incantation, I have switch to roman number representation.
 
 "
 Class {
-	#name : #ClockSurround,
-	#superclass : #ClockPart,
-	#category : #'SmallClock-core'
+	#name : 'ClockSurround',
+	#superclass : 'ClockPart',
+	#category : 'SmallClock-core',
+	#package : 'SmallClock',
+	#tag : 'core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockSurround class >> start [
 	^self new start
 ]
 
-{ #category : #accessing }
-ClockSurround >> animate: elementCollection index: index from: aCenter [
+{ #category : 'accessing' }
+ClockSurround >> animate: elementCollection from: aCenter [
 	| currentPosition element newPosition |
 	elementCollection isEmpty
 		ifTrue: [ ^ nil ].
@@ -26,12 +28,11 @@ ClockSurround >> animate: elementCollection index: index from: aCenter [
 	element position: aCenter.
 	self
 		animate: elementCollection allButFirst
-		index: index + 1
 		from: newPosition
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockSurround >> elements: aCollection [
 	elements := aCollection
 		collectWithIndex: [ :string :index | 
@@ -43,18 +44,18 @@ ClockSurround >> elements: aCollection [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockSurround >> label [
 	^ 'I II III IV V VI VII VIII IX X XI XII' findTokens: ' '
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockSurround >> position: aCircleCenter [
-	self animate: elements index: 1 from: aCircleCenter
+	self animate: elements from: aCircleCenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockSurround >> radius [ 
 	^ 48
 

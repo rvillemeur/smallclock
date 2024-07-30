@@ -4,18 +4,20 @@ I'm build with a specific string representing the date in French, like ""mardi 2
 
 "
 Class {
-	#name : #ClockDate,
-	#superclass : #ClockPart,
-	#category : #'SmallClock-core'
+	#name : 'ClockDate',
+	#superclass : 'ClockPart',
+	#category : 'SmallClock-core',
+	#package : 'SmallClock',
+	#tag : 'core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockDate class >> start [
 	^self new start
 ]
 
-{ #category : #accessing }
-ClockDate >> animate: elementCollection index: index from: aCenter [
+{ #category : 'accessing' }
+ClockDate >> animate: elementCollection from: aCenter [
 	| currentPosition element newPosition |
 	elementCollection isEmpty
 		ifTrue: [ ^ nil ].
@@ -26,11 +28,10 @@ ClockDate >> animate: elementCollection index: index from: aCenter [
 	element position: aCenter.
 	self
 		animate: elementCollection allButFirst
-		index: index + 1
 		from: newPosition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockDate >> dateLabelAt: aDate [
 	| dayName monthName yearName today |
 	dayName := self dayNameAt: aDate.
@@ -40,12 +41,12 @@ ClockDate >> dateLabelAt: aDate [
 	^ ' ' , dayName , ' ' , today , ' ' , monthName , ' ' , yearName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockDate >> dayNameAt: aDate [
 	^ #('Dimanche' 'Lundi' 'Mardi' 'Mercredi' 'Jeudi' 'Vendredi' 'Samedi') at: aDate  weekdayIndex.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockDate >> elements: aCollection [
 	elements := aCollection
 		collectWithIndex: [ :string :index | 
@@ -57,24 +58,24 @@ ClockDate >> elements: aCollection [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockDate >> label [
 	^ (self dateLabelAt: Date today) asOrderedCollection 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockDate >> monthNameAt: aDate [
 	^ #('Janvier' 'Février' 'Mars' 'Avril' 'Mai' 'Juin' 'Juillet' 'Août' 'Septembre' 'Octobre' 'Novembre' 'Décembre') at: aDate monthIndex.
 
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockDate >> position: aCircleCenter [
-	self animate: elements index: 1 from: aCircleCenter
+	self animate: elements from: aCircleCenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockDate >> radius [
 	^ 60
 

@@ -2,12 +2,14 @@
 I'm the surround face element of the clock. I'm static when the mouse doesn't move.
 "
 Class {
-	#name : #ClockSurroundElement,
-	#superclass : #ClockFaceElement,
-	#category : #'SmallClock-core'
+	#name : 'ClockSurroundElement',
+	#superclass : 'ClockFaceElement',
+	#category : 'SmallClock-core',
+	#package : 'SmallClock',
+	#tag : 'core'
 }
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 ClockSurroundElement >> position: aCircleCenter [
 	|xPosition yPosition radian|
 	center:= aCircleCenter.

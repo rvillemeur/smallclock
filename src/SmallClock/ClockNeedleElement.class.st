@@ -1,10 +1,12 @@
 Class {
-	#name : #ClockNeedleElement,
-	#superclass : #ClockElement,
-	#category : #'SmallClock-core'
+	#name : 'ClockNeedleElement',
+	#superclass : 'ClockElement',
+	#category : 'SmallClock-core',
+	#package : 'SmallClock',
+	#tag : 'core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockNeedleElement class >> label: aLetter radius: circleRadius index: elementPosition on: numberOfElement [
 	| element |
 	element := self new.
@@ -16,12 +18,12 @@ ClockNeedleElement class >> label: aLetter radius: circleRadius index: elementPo
 	^ element
 ]
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 ClockNeedleElement >> arcRadiansOn: aTime [
 	^ self subclassResponsibility
 ]
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 ClockNeedleElement >> position: aCircleCenter on: time [
 	|xPosition yPosition radian|
 	center := aCircleCenter.

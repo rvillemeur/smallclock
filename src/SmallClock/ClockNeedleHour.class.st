@@ -1,16 +1,18 @@
 Class {
-	#name : #ClockNeedleHour,
-	#superclass : #ClockPart,
-	#category : #'SmallClock-core'
+	#name : 'ClockNeedleHour',
+	#superclass : 'ClockPart',
+	#category : 'SmallClock-core',
+	#package : 'SmallClock',
+	#tag : 'core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockNeedleHour class >> start [
 	^self new start
 ]
 
-{ #category : #accessing }
-ClockNeedleHour >> animate: elementCollection index: index from: aCenter on: aTime [
+{ #category : 'accessing' }
+ClockNeedleHour >> animate: elementCollection from: aCenter on: aTime [
 	| currentPosition element newPosition |
 	elementCollection isEmpty
 		ifTrue: [ ^ nil ].
@@ -21,12 +23,11 @@ ClockNeedleHour >> animate: elementCollection index: index from: aCenter on: aTi
 	element position: aCenter on: aTime .
 	self
 		animate: elementCollection allButFirst
-		index: index + 1
 		from: newPosition
 		on: aTime.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockNeedleHour >> elements: aCollection [
 	elements := aCollection
 		collectWithIndex: [ :string :index | 
@@ -38,22 +39,21 @@ ClockNeedleHour >> elements: aCollection [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockNeedleHour >> label [
 	^ '...' asOrderedCollection 
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockNeedleHour >> position: aCircleCenter on: time [
 	self
 		animate: elements
-		index: 1
 		from: aCircleCenter
 		on: time
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockNeedleHour >> radius [ 
 	^ 10
 

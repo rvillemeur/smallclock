@@ -1,10 +1,12 @@
 Class {
-	#name : #ClockNeedleHourElement,
-	#superclass : #ClockNeedleElement,
-	#category : #'SmallClock-core'
+	#name : 'ClockNeedleHourElement',
+	#superclass : 'ClockNeedleElement',
+	#category : 'SmallClock-core',
+	#package : 'SmallClock',
+	#tag : 'core'
 }
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 ClockNeedleHourElement >> arcRadiansOn: time [
 	| minuteOffset |
 	minuteOffset := Float pi * time minute / 360.

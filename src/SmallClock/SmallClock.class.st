@@ -7,8 +7,8 @@ There is a menu added to the world so user can start and stop me.
 
 "
 Class {
-	#name : #SmallClock,
-	#superclass : #Object,
+	#name : 'SmallClock',
+	#superclass : 'Object',
 	#instVars : [
 		'surround',
 		'date',
@@ -20,10 +20,12 @@ Class {
 	#classVars : [
 		'instance'
 	],
-	#category : #'SmallClock-core'
+	#category : 'SmallClock-core',
+	#package : 'SmallClock',
+	#tag : 'core'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 SmallClock class >> initialize [
 	WorldState desktopMenuPragmaKeyword: 'worldMenu'.
 	instance isNil
@@ -31,20 +33,20 @@ SmallClock class >> initialize [
 
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 SmallClock class >> start [
 	^ instance start
 
 
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 SmallClock class >> stop [
 	^ instance stop
 
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 SmallClock class >> worldMenu: aBuilder [
 	<worldMenu>
 	(aBuilder item: #SmallClock)
@@ -63,12 +65,24 @@ SmallClock class >> worldMenu: aBuilder [
 				help: 'stop clock animation' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'initialization' }
+SmallClock >> initialize [
+
+	super initialize.
+
+	surround := ClockSurround.
+	date := ClockDate.
+	second := ClockNeedleSecond.
+	minute := ClockNeedleMinute.
+	hour := ClockNeedleHour
+]
+
+{ #category : 'accessing' }
 SmallClock >> mouseOffset [
 	^ 75 @ 75
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SmallClock >> position: aPoint [
 |time|
 	time := DateAndTime now.
@@ -80,26 +94,34 @@ SmallClock >> position: aPoint [
 	^self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SmallClock >> start [
-	surround := ClockSurround start.
-	date := ClockDate start.
-	second := ClockNeedleSecond  start.
-	minute := ClockNeedleMinute  start.
-	hour := ClockNeedleHour start.
-	process := [ [ true ]
-		whileTrue: [ self position: Smalltalk currentWorld activeHand position + self mouseOffset.
-			(1 / 60) seconds asDelay wait ] ] forkAt: Processor lowestPriority.
+
+	{
+		surround.
+		date.
+		second.
+		minute.
+		hour } do: [ :elt | elt start ].
+
+	process := [
+	           [ true ] whileTrue: [
+		           self position:
+			           Smalltalk currentWorld activeHand position
+			           + self mouseOffset.
+		           (1 / 60) seconds asDelay wait ] ] forkAt:
+		           Processor lowestPriority.
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SmallClock >> stop [
-	surround stop.
-	date stop.
-	second stop.
-	minute stop.
-	hour stop.
+	{
+		surround.
+		date.
+		second.
+		minute.
+		hour } do: [ :elt | elt stop ].
 	process terminate.
 	^ self
 ]

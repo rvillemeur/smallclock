@@ -4,21 +4,23 @@ I'm an element of clock date. In addition to the animation displayed when the us
 
 "
 Class {
-	#name : #ClockDateElement,
-	#superclass : #ClockFaceElement,
+	#name : 'ClockDateElement',
+	#superclass : 'ClockFaceElement',
 	#instVars : [
 		'rotation'
 	],
-	#category : #'SmallClock-core'
+	#category : 'SmallClock-core',
+	#package : 'SmallClock',
+	#tag : 'core'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 ClockDateElement >> initialize [
 	rotation := 0.
 	^ self
 ]
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 ClockDateElement >> position: aCircleCenter [
 	|xPosition yPosition radian|
 	center:= aCircleCenter.
@@ -29,17 +31,17 @@ ClockDateElement >> position: aCircleCenter [
 	label position: xPosition @ yPosition + aCircleCenter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockDateElement >> rotation [
 	^ rotation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClockDateElement >> rotation: anObject [
 	rotation := anObject
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 ClockDateElement >> speed [
 	^ 0.06
 
