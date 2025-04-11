@@ -12,7 +12,7 @@ Class {
 { #category : 'tests' }
 ClockDateTest >> testDateLabelAt [
 	| label date |
-	date := Date fromString: '06/13/2019'.
+	date := Date readFrom: '06/13/2019' pattern: 'mm/dd/yyyy' .
 	label := ClockDate new dateLabelAt: date.
 	self assert: label equals: ' Jeudi 13 Juin 2019'
 ]
@@ -20,7 +20,7 @@ ClockDateTest >> testDateLabelAt [
 { #category : 'tests' }
 ClockDateTest >> testDayNameAt [
 |weekday date|
-date := Date fromString: '06/13/2019'.
+date := Date readFrom: '06/13/2019' pattern: 'mm/dd/yyyy'.
 weekday :=  ClockDate new dayNameAt: date.
 self assert: weekday equals: 'Jeudi'
 ]
@@ -28,7 +28,7 @@ self assert: weekday equals: 'Jeudi'
 { #category : 'tests' }
 ClockDateTest >> testMonthNameAt [
 |monthName date|
-date := Date fromString: '06/13/2019'.
+date := Date readFrom: '06/13/2019' pattern: 'mm/dd/yyyy'.
 monthName :=  ClockDate new monthNameAt: date.
 self assert: monthName equals: 'Juin'
 ]
