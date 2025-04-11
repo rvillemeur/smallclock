@@ -97,12 +97,11 @@ SmallClock >> position: aPoint [
 { #category : 'accessing' }
 SmallClock >> start [
 
-	{
-		surround.
-		date.
-		second.
-		minute.
-		hour } do: [ :elt | elt start ].
+	surround := ClockSurround start.
+	date := ClockDate start.
+	second := ClockNeedleSecond start.
+	minute := ClockNeedleMinute start.
+	hour := ClockNeedleHour start.
 
 	process := [
 	           [ true ] whileTrue: [
